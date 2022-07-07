@@ -20,6 +20,7 @@ const int SPI_CS_PIN = 10;              // CANBed V1
 // const int SPI_CS_PIN = 3;            // CANBed M0
 // const int SPI_CS_PIN = 9;            // CAN Bus Shield
 
+
 MCP_CAN CAN(SPI_CS_PIN);                                    // Set CS pin
 
 void setup()
@@ -53,9 +54,13 @@ void loop()
     if (canId == 0x0308) {  //RPM Filter
 
       for (int i = 0; i < len; i++) // print the data
+      
       {
-        Serial.print(buf[i]);
+        // Serial.print(buf[i], HEX);
+        Serial.print("RPM");
+        Serial.print(buf[2] * 256 + buf[3]);
         Serial.print("\t");
+        
       }
       Serial.println();
     }
